@@ -16,7 +16,10 @@
                     <md-fab lowered label="Alarm" class="disabled-force">
                         <md-icon slot="icon">alarm</md-icon>
                     </md-fab>
-                    <div class="hasMask fixed top-0 left-0 -z-[1] bg-[--md-sys-color-inverse-on-surface-light] opacity-75 w-full h-full"></div>
+                    <div
+                        class="hasMask fixed top-0 left-0 -z-[1] bg-[--md-sys-color-inverse-on-surface-light] opacity-75 w-full h-full"
+                        :class="isExpanded ? 'pointer-events-auto' : 'pointer-events-none'"
+                    ></div>
                 </FlexLayout>
             </template>
         </ExpanedLayout>

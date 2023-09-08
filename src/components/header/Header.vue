@@ -3,16 +3,14 @@
         <FlexLayout class="justify-between">
             <TitleMedium>Timer</TitleMedium>
             <div>
-                <md-icon-button>
-                    <md-icon>dark_mode</md-icon>
-                </md-icon-button>
+                <DarkButton></DarkButton>
             </div>
         </FlexLayout>
     </StickyLayout>
 </template>
 
 <script setup lang="ts">
-
+import DarkButton from '@/components/dark/DarkButton.vue'
 </script>
 
 <style scoped>
