@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "allowUnreachableCode": false,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "declaration": true,
     "declarationMap": false,

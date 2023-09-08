@@ -12,10 +12,12 @@ export const useTimerStore = defineStore('timer_store', {
         countdown: 3,
         events: {
             stopwatch: [],
+            timer: [],
         }
     }),
     getters: {
         getStopwatchEvents: (state) => state.events.stopwatch,
+        getTimerEvents: (state) => state.events.timer,
     },
     actions: {
         start() {
@@ -24,7 +26,7 @@ export const useTimerStore = defineStore('timer_store', {
         push(e: any, type: TimerTypes) {
             switch (type) {
                 case TimerTypes.TIMER:
-
+                    this.events.timer.push(e)
                     break;
                 case TimerTypes.ALARM:
 
@@ -39,19 +41,39 @@ export const useTimerStore = defineStore('timer_store', {
         createStopwatchEvent() {
             var num = ref(0)
 
-            const add = () => setInterval(() => {
+            const event = () => setInterval(() => {
                 num.value += 0.01
             }, 10)
             var timer: any = null
             return {
                 start: () => {
                     clearInterval(timer)
-                    timer = add()
+                    timer = event()
                 },
                 pause: () => clearInterval(timer),
                 continue: () => {
                     clearInterval(timer)
-                    timer = add()
+                    timer = event()
+                },
+                value: num
+            }
+        },
+        createTimerEvent(countdown: number) {
+            var num = ref(countdown)
+
+            const event = () => setInterval(() => {
+                num.value -= 1
+            }, 1000)
+            var timer: any = null
+            return {
+                start: () => {
+                    clearInterval(timer)
+                    timer = event()
+                },
+                pause: () => clearInterval(timer),
+                continue: () => {
+                    clearInterval(timer)
+                    timer = event()
                 },
                 value: num
             }
