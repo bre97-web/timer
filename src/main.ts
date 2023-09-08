@@ -48,6 +48,7 @@ import FixedLayout from './layouts/FixedLayout.vue'
 import FlexLayout from './layouts/FlexLayout.vue'
 import PageLayout from './layouts/PageLayout.vue'
 import StickyLayout from './layouts/StickyLayout.vue'
+import GridLayout from './layouts/GridLayout.vue'
 
 /**
  * Pinia
@@ -80,5 +81,6 @@ app
     .component('FlexLayout', FlexLayout)
     .component('PageLayout', PageLayout)
     .component('StickyLayout', StickyLayout)
+    .component('GridLayout', GridLayout)
 app.use(pinia).use(Router)
 app.mount('#app')

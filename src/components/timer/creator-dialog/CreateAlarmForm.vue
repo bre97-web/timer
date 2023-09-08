@@ -1,8 +1,6 @@
 <template>
     <div>
-        <span>
-            This will create a timer, please keep the browser active.
-        </span>
+        <md-filled-text-field name="date" label="TargetTime"></md-filled-text-field>
     </div>
 </template>
 

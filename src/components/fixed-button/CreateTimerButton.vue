@@ -12,7 +12,7 @@
                     class="gap-2 flex-col items-end transition-all"
                     :class="isExpanded ? ' opacity-100 flex z-[1]' : ' opacity-0'" @click="setIsExpanded(false)"
                 >
-                    <md-fab v-for="(e, index) in componentList" :key="index" @click="setTargetComponent(e.component)" lowered :label="e.label">
+                    <md-fab v-for="(e, index) in componentList" :key="index" @click="setTargetComponent(e)" lowered :label="e.label">
                         <md-icon slot="icon">{{ e.icon }}</md-icon>
                     </md-fab>
 
@@ -34,8 +34,12 @@
                 </md-icon-button>
             </span>
             <form id="form" slot="content" method="dialog">
-                <component :is="targetComponent"></component>
+                <component :is="targetComponent.component"></component>
             </form>
+            <div slot="actions">
+                <md-text-button form="form" value="cancel">Cancel</md-text-button>
+                <md-text-button form="form" autofocus value="ok">Apply</md-text-button>
+            </div>
         </md-dialog>
 
     </Teleport>
@@ -43,7 +47,10 @@
 
 <script setup lang="ts">
 import CreateStopwatchForm from '@/components/timer/creator-dialog/CreateStopwatchForm.vue'
-import { markRaw } from 'vue';
+import CreateAlarmForm from '@/components/timer/creator-dialog/CreateAlarmForm.vue'
+import CreateTimerForm from '@/components/timer/creator-dialog/CreateTimerForm.vue'
+import { markRaw, onMounted, onUnmounted, ref } from 'vue';
+import { TimerTypes, useTimerStore } from '@/store/TimerStore';
 
 const componentList: [{
     component: any
@@ -56,22 +63,40 @@ const componentList: [{
         icon: 'hourglass'
     },
     {
-        component: CreateStopwatchForm,
+        component: CreateAlarmForm,
         label:'Alarm', 
         icon: 'alarm'
     },
     {
-        component: CreateStopwatchForm,
+        component: CreateTimerForm,
         label: 'Timer',
         icon: 'timer'
     },
 ]
 
-var targetComponent = markRaw(componentList[0].component)
+var targetComponent = ref(markRaw(componentList[0]))
 const createDialogRef = (): HTMLElement & {show:()=>void, close:()=>void} => document.getElementById('createDialogRef') as HTMLElement & {show:()=>void, close:()=>void}
 const setTargetComponent = (e: any) => {
-    targetComponent = markRaw(e)
+    targetComponent.value = markRaw(e)
     createDialogRef().show()
 }
+const getForm = (e: Event) => {
+    const target: (HTMLElement & {value: string})[] = Array.from((e.target as HTMLElement).children.namedItem('form').children.item(0).children) as (HTMLElement & {value: string})[]
+
+    const timer = useTimerStore()
+
+    if(targetComponent.value.label === 'Stopwatch') {
+        timer.push(timer.createStopwatchEvent(), TimerTypes.STOPWATCH)
+    }
+    
+    
+}
+
+onMounted(() => {
+    createDialogRef().addEventListener('close', getForm)
+})
+onUnmounted(() => {
+    createDialogRef().removeEventListener('close', getForm)
+})
 
 </script>
