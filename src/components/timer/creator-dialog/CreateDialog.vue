@@ -22,5 +22,3 @@ const props = defineProps<{
     targetComponent: any
 }>()
 </script>
-
-<style scoped></style>
