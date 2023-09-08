@@ -1,9 +1,9 @@
 {
-  "name": "vue3-component-template",
+  "name": "timer",
   "version": "0.0.1",
   "description": "",
   "author": "bre97-web",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": ""
@@ -16,16 +16,10 @@
     "type-check": "wireit",
     "dev": "wireit",
     "dev:src": "wireit",
-    "dev:stories": "wireit",
-    "dev:catalog": "npm run dev:stories",
     "build": "wireit",
     "build:src": "wireit",
-    "build:stories": "wireit",
-    "build:catalog": "npm run build:stories",
     "preview": "wireit",
     "preview:src": "wireit",
-    "publish:npm": "node ./scripts/publish-to-npm.js && npm run format:json",
-    "publish:gpr": "node ./scripts/publish-to-gpr.js && npm run format:json",
     "format:json": "npx prettier --write package.json",
     "format:ts": "tsc --pretty",
     "test": "exit 0"
@@ -34,42 +28,31 @@
   "files": [],
   "workspaces": [],
   "dependencies": {
-    "@fontsource/noto-sans-sc": "^5.0.7",
     "@fontsource/roboto": "^5.0.8",
-    "@headlessui/vue": "^1.7.15",
-    "@material/web": "^1.0.0-pre.15",
+    "@headlessui/vue": "^1.7.16",
+    "@material/web": "^1.0.0-pre.17",
     "autoprefixer": "^10.4.15",
     "lit": "^2.8.0",
-    "material-symbols": "^0.10.4",
+    "material-symbols": "^0.12.0",
     "moment": "^2.29.4",
     "pinia": "^2.1.6",
     "pinia-plugin-persistedstate": "^3.2.0",
-    "postcss": "^8.4.27",
+    "postcss": "^8.4.29",
     "tailwindcss": "^3.3.3",
-    "tslib": "^2.6.1",
+    "tslib": "^2.6.2",
     "vue-router": "^4.2.4"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^7.2.3",
-    "@storybook/addon-interactions": "^7.2.3",
-    "@storybook/addon-links": "^7.2.3",
-    "@storybook/blocks": "^7.2.3",
-    "@storybook/testing-library": "^0.2.0",
-    "@storybook/vue3": "^7.2.3",
-    "@storybook/vue3-vite": "^7.2.3",
-    "@types/node": "^20.5.0",
-    "@vitejs/plugin-vue": "^4.2.3",
-    "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "@types/node": "^20.5.9",
+    "@vitejs/plugin-vue": "^4.3.4",
+    "@vitejs/plugin-vue-jsx": "^3.0.2",
     "@vue/tsconfig": "^0.4.0",
-    "prettier": "^3.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "storybook": "^7.2.3",
-    "typescript": "^5.1.6",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2",
     "vite": "^4.4.9",
     "vue": "^3.3.4",
-    "vue-tsc": "^1.8.8",
-    "wireit": "^0.10.0"
+    "vue-tsc": "^1.8.10",
+    "wireit": "^0.13.0"
   },
   "wireit": {
     "build": {
@@ -80,10 +63,7 @@
     "build:src": {
       "command": "vite build",
       "files": [
-        "src/**/*",
-        "!catalog/**/*",
-        "!docs/**/*",
-        "!config/**/*"
+        "src/**/*"
       ],
       "output": [
         "docs/**/*"
@@ -91,9 +71,6 @@
       "dependencies": [
         "type-check"
       ]
-    },
-    "build:stories": {
-      "command": "storybook build public -o ./catalog/docs"
     },
     "type-check": {
       "command": "vue-tsc --noEmit"
@@ -113,9 +90,6 @@
     },
     "dev:src": {
       "command": "vite"
-    },
-    "dev:stories": {
-      "command": "storybook dev -p 6006"
     }
   }
 }
