@@ -1,5 +1,5 @@
 // Vue
-import { createApp, watch } from 'vue'
+import { createApp } from 'vue'
 import App from '@/App.vue'
 
 /**
