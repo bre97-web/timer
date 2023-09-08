@@ -49,18 +49,18 @@
     </Teleport>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T">
 import CreateStopwatchForm from '@/components/timer/creator-dialog/CreateStopwatchForm.vue'
 import CreateAlarmForm from '@/components/timer/creator-dialog/CreateAlarmForm.vue'
 import CreateTimerForm from '@/components/timer/creator-dialog/CreateTimerForm.vue'
-import { markRaw, onMounted, onUnmounted, ref } from 'vue';
-import { TimerTypes, useTimerStore } from '@/store/TimerStore';
+import { markRaw, onMounted, onUnmounted, ref } from 'vue'
+import { TimerTypes, useTimerStore } from '@/store/TimerStore'
 
-const componentList: [{
-    component: any
-    label: string
-    icon: string
-}]= [
+const componentList: {
+    component: any,
+    label: string,
+    icon: string,
+}[] = [
     {
         component: CreateStopwatchForm,
         label:'Stopwatch', 
