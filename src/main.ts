@@ -39,7 +39,15 @@ import LabelSmall from '@/typography/LabelSmall.vue'
 import BodyLarge from '@/typography/BodyLarge.vue'
 import BodyMedium from '@/typography/BodyMedium.vue'
 import BodySmall from '@/typography/BodySmall.vue'
-
+/**
+ * Global Components.
+ * Those components are layouts.
+ */
+import ExpanedLayout from './layouts/ExpanedLayout.vue'
+import FixedLayout from './layouts/FixedLayout.vue'
+import FlexLayout from './layouts/FlexLayout.vue'
+import PageLayout from './layouts/PageLayout.vue'
+import StickyLayout from './layouts/StickyLayout.vue'
 
 /**
  * Pinia
@@ -67,5 +75,10 @@ app
     .component('BodyLarge', BodyLarge)
     .component('BodyMedium', BodyMedium)
     .component('BodySmall', BodySmall)
+    .component('ExpanedLayout', ExpanedLayout)
+    .component('FixedLayout', FixedLayout)
+    .component('FlexLayout', FlexLayout)
+    .component('PageLayout', PageLayout)
+    .component('StickyLayout', StickyLayout)
 app.use(pinia).use(Router)
 app.mount('#app')

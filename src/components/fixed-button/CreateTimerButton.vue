@@ -24,10 +24,4 @@
 </template>
 
 <script setup lang="ts">
-import ExpanedLayout from '@/layouts/ExpanedLayout.vue';
-import FixedLayout from '@/layouts/FixedLayout.vue';
-import FlexLayout from '@/layouts/FlexLayout.vue';
-
 </script>
-
-<style lang="css" scoped></style>
