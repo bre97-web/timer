@@ -1,18 +1,26 @@
+import moment from "moment";
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { Ref, ref } from "vue";
 
 export enum TimerTypes {
     TIMER = 0,
-    ALARM,
     STOPWATCH
+}
+
+export type TimerReturns = {
+    start: () => void,
+    pause: () => void,
+    continue: () => void,
+    value: Ref<number>,
+    id: string
 }
 
 export const useTimerStore = defineStore('timer_store', {
     state: () => ({
         countdown: 3,
         events: {
-            stopwatch: [],
-            timer: [],
+            stopwatch: [] as TimerReturns[],
+            timer: [] as TimerReturns[],
         }
     }),
     getters: {
@@ -20,16 +28,22 @@ export const useTimerStore = defineStore('timer_store', {
         getTimerEvents: (state) => state.events.timer,
     },
     actions: {
-        start() {
-
+        remove(e: any, type: TimerTypes) {
+            switch (type) {
+                case TimerTypes.TIMER:
+                    this.events.timer = this.events.timer.filter(e => e !== e)
+                    break;
+                case TimerTypes.STOPWATCH:
+                    this.events.stopwatch = this.events.stopwatch.filter(e => e !== e)
+                    break;
+                default:
+                    break;
+            }
         },
         push(e: any, type: TimerTypes) {
             switch (type) {
                 case TimerTypes.TIMER:
                     this.events.timer.push(e)
-                    break;
-                case TimerTypes.ALARM:
-
                     break;
                 case TimerTypes.STOPWATCH:
                     this.events.stopwatch.push(e)
@@ -38,7 +52,7 @@ export const useTimerStore = defineStore('timer_store', {
                     break;
             }
         },
-        createStopwatchEvent() {
+        createStopwatchEvent(): TimerReturns {
             var num = ref(0)
 
             const event = () => setInterval(() => {
@@ -55,10 +69,11 @@ export const useTimerStore = defineStore('timer_store', {
                     clearInterval(timer)
                     timer = event()
                 },
-                value: num
+                value: num,
+                id: moment().format('X').toString()
             }
         },
-        createTimerEvent(countdown: number) {
+        createTimerEvent(countdown: number): TimerReturns {
             var num = ref(countdown)
 
             const event = () => setInterval(() => {
@@ -75,7 +90,8 @@ export const useTimerStore = defineStore('timer_store', {
                     clearInterval(timer)
                     timer = event()
                 },
-                value: num
+                value: num,
+                id: moment().format('X').toString()
             }
         }
     }

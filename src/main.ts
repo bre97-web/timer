@@ -43,7 +43,7 @@ import BodySmall from '@/typography/BodySmall.vue'
  * Global Components.
  * Those components are layouts.
  */
-import ExpanedLayout from './layouts/ExpanedLayout.vue'
+import ExpandLayout from './layouts/ExpandLayout.vue'
 import FixedLayout from './layouts/FixedLayout.vue'
 import FlexLayout from './layouts/FlexLayout.vue'
 import PageLayout from './layouts/PageLayout.vue'
@@ -76,7 +76,7 @@ app
     .component('BodyLarge', BodyLarge)
     .component('BodyMedium', BodyMedium)
     .component('BodySmall', BodySmall)
-    .component('ExpanedLayout', ExpanedLayout)
+    .component('ExpandLayout', ExpandLayout)
     .component('FixedLayout', FixedLayout)
     .component('FlexLayout', FlexLayout)
     .component('PageLayout', PageLayout)

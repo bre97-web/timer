@@ -1,6 +1,6 @@
 <template>
     <FixedLayout class="right-4 bottom-4">
-        <ExpanedLayout class="flex gap-2 flex-col-reverse items-end">
+        <ExpandLayout class="flex gap-2 flex-col-reverse items-end">
             <template v-slot:action="{ setIsExpanded }">
                 <md-fab
                     @click="setIsExpanded(true)"
@@ -26,7 +26,7 @@
                     ></div>
                 </FlexLayout>
             </template>
-        </ExpanedLayout>
+        </ExpandLayout>
     </FixedLayout>
 
     <Teleport to="body">

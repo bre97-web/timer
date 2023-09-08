@@ -1,7 +1,7 @@
 <template>
     <div>
         <GridLayout class="gap-4">
-            <div v-for="e in stopwatches.getTimerEvents" :key="e" class="rounded-3xl p-4 relative min-w-min" :class="{'error-container on-error-container-text animate-pulse': e.value < 0}">
+            <FlexLayout v-for="e in timer.getTimerEvents" :key="e.id" class="rounded-3xl p-4 relative min-w-min flex-col gap-2" :class="{'error-container on-error-container-text animate-pulse': e.value < 0}">
                 <md-ripple></md-ripple>
                 <md-elevation></md-elevation>
                 <DisplayLarge class="select-none">
@@ -13,16 +13,35 @@
                     <md-filled-tonal-button @click="e.pause">Pause</md-filled-tonal-button>
                     <md-filled-tonal-button @click="e.continue">Continue</md-filled-tonal-button>
                 </div>
-            </div>
+
+                <ExpandLayout class="space-y-2">
+                    <template v-slot:action="{ isExpanded, setIsExpanded }">
+                        <FlexLayout class="justify-end">
+                            <md-icon-button @click="setIsExpanded(!isExpanded)">
+                                <md-icon v-if="!isExpanded">expand_more</md-icon>
+                                <md-icon v-else>expand_less</md-icon>
+                            </md-icon-button>
+                        </FlexLayout>
+                    </template>
+                    <template v-slot:expanded-content="{ isExpanded }">
+                        <FlexLayout class="gap-1 flex-wrap justify-end" v-show="isExpanded">
+                            <md-text-button @click="timer.remove(e, TimerTypes.TIMER)">
+                                Remove
+                                <md-icon slot="icon">delete</md-icon>
+                            </md-text-button>
+                        </FlexLayout>
+                    </template>
+                </ExpandLayout>
+            </FlexLayout>
         </GridLayout>
     </div>
 </template>
 
 <script setup lang="ts">
-import { useTimerStore } from '@/store/TimerStore';
+import { TimerTypes, useTimerStore } from '@/store/TimerStore';
 import moment from 'moment';
 
-const stopwatches = useTimerStore()
+const timer = useTimerStore()
 
 </script>
 
