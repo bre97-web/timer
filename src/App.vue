@@ -1,7 +1,7 @@
 <template>
     <div class="bg-[var(--md-sys-color-background)] relative max-h-screen min-h-screen flex flex-col h-full">
         <Header></Header>
-        <main class="container bg-[var(--md-sys-color-surface)] self-center p-8 md:p-4 flex-grow overflow-y-auto rounded-3xl">
+        <main class="relative container bg-[var(--md-sys-color-surface)] self-center p-8 md:p-4 flex-grow overflow-y-auto rounded-3xl">
             <StopwatchList></StopwatchList>
             <CreateTimerButton></CreateTimerButton>
         </main>

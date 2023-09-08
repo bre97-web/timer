@@ -1,23 +1,27 @@
 <template>
     <FixedLayout class="right-4 bottom-4">
-        <ExpanedLayout class="flex gap-2 flex-col-reverse">
-            <template v-slot:action="{ setIsExpanded, isExpanded }">
-                <md-fab @click="setIsExpanded(true)" :disabled="isExpanded" label="Starts">
+        <ExpanedLayout class="flex gap-2 flex-col-reverse items-end">
+            <template v-slot:action="{ setIsExpanded }">
+                <md-fab
+                    @click="setIsExpanded(true)"
+                    label="Starts"
+                >
                     <md-icon slot="icon">add</md-icon>
                 </md-fab>
             </template>
 
             <template v-slot:expanded-content="{ setIsExpanded, isExpanded }">
                 <FlexLayout
-                    class="gap-2 flex-col items-end transition-all select-none"
-                    :class="isExpanded ? 'opacity-100 flex z-[1]' : ' opacity-0 pointer-events-none'" @click="setIsExpanded(false)"
+                    class="gap-2 flex-col items-end transition-all select-none will-change-contents"
+                    :class="[isExpanded ? 'opacity-100 flex z-[1]' : 'opacity-0 pointer-events-none -z-[1] fixed -bottom-96']"
+                    @click="setIsExpanded(false)"
                 >
                     <md-fab v-for="(e, index) in componentList" :key="index" @click="setTargetComponent(e)" lowered :label="e.label">
                         <md-icon slot="icon">{{ e.icon }}</md-icon>
                     </md-fab>
 
                     <div
-                        class="-z-[1] hasMask fixed top-0 left-0 bg-[--md-sys-color-inverse-on-surface-light] opacity-75 w-full h-full"
+                        class="-z-[1] hasMask fixed top-0 left-0 bg-[--md-sys-color-inverse-on-surface] opacity-75 w-full h-full"
                         :class="isExpanded ? 'pointer-events-auto' : 'pointer-events-none'"
                     ></div>
                 </FlexLayout>
