@@ -10,16 +10,15 @@ import Router from '@/router/index'
 /**
  * Tailwindcss
  */
-import '@/assets/tailwind.css'
-import '@/assets/index.css'
+import '@/assets/css/tailwind.css'
+import '@/assets/css/theme.css'
 
 /**
  * Google's Material Design
  */
 import '@material/web/all'
 import 'material-symbols/outlined.css'
-// import '@fontsource/roboto/unicode.json'
-// import '@fontsource/noto-sans-sc/unicode.json'
+import '@fontsource/roboto'
 
 /**
  * Global Components.

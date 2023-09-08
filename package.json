@@ -28,7 +28,6 @@
   "files": [],
   "workspaces": [],
   "dependencies": {
-    "@fontsource/noto-sans-sc": "^5.0.10",
     "@fontsource/roboto": "^5.0.8",
     "@headlessui/vue": "^1.7.16",
     "@material/web": "^1.0.0-pre.17",
