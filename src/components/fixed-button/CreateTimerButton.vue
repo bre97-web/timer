@@ -16,7 +16,7 @@
                     :class="[isExpanded ? 'opacity-100 flex z-[1]' : 'opacity-0 pointer-events-none -z-[1] fixed -bottom-96']"
                     @click="setIsExpanded(false)"
                 >
-                    <md-fab v-for="(e, index) in componentList" :key="index" @click="setTargetComponent(e)" lowered :label="e.label">
+                    <md-fab v-for="(e, index) in DialogComponent.getComponentList()" :key="index" @click="setTargetComponent(e)" lowered :label="e.label">
                         <md-icon slot="icon">{{ e.icon }}</md-icon>
                     </md-fab>
 
@@ -30,60 +30,28 @@
     </FixedLayout>
 
     <Teleport to="body">
-        <md-dialog id="createDialogRef">
-            <span slot="headline">
-                <span style="flex: 1;">Create a timer</span>
-                <md-icon-button form="form">
-                    <md-icon>close</md-icon>
-                </md-icon-button>
-            </span>
-            <form id="form" slot="content" method="dialog">
-                <component :is="targetComponent.component"></component>
-            </form>
-            <div slot="actions">
-                <md-text-button form="form" value="cancel">Cancel</md-text-button>
-                <md-text-button form="form" autofocus value="ok">Apply</md-text-button>
-            </div>
-        </md-dialog>
-
+        <!-- create dialog id is 'createDialogRef' -->
+        <CreateDialog :target-component="targetComponent"></CreateDialog>
     </Teleport>
 </template>
 
 <script setup lang="ts" generic="T">
-import CreateStopwatchForm from '@/components/timer/creator-dialog/CreateStopwatchForm.vue'
-import CreateAlarmForm from '@/components/timer/creator-dialog/CreateAlarmForm.vue'
-import CreateTimerForm from '@/components/timer/creator-dialog/CreateTimerForm.vue'
 import { markRaw, onMounted, onUnmounted, ref } from 'vue'
 import { TimerTypes, useTimerStore } from '@/store/TimerStore'
+import * as DialogComponent from '@/scripts/createTimerButtonList'
+import CreateDialog from '@/components/timer/creator-dialog/CreateDialog.vue'
 
-const componentList: {
-    component: any,
-    label: string,
-    icon: string,
-}[] = [
-    {
-        component: CreateStopwatchForm,
-        label:'Stopwatch', 
-        icon: 'hourglass'
-    },
-    {
-        component: CreateAlarmForm,
-        label:'Alarm', 
-        icon: 'alarm'
-    },
-    {
-        component: CreateTimerForm,
-        label: 'Timer',
-        icon: 'timer'
-    },
-]
-
-var targetComponent = ref(markRaw(componentList[0]))
+/**
+ * Open the dialog
+ */
 const createDialogRef = (): HTMLElement & {show:()=>void, close:()=>void} => document.getElementById('createDialogRef') as HTMLElement & {show:()=>void, close:()=>void}
+
+const targetComponent = ref(markRaw(DialogComponent.getComponentList()[0]))
 const setTargetComponent = (e: any) => {
     targetComponent.value = markRaw(e)
     createDialogRef().show()
 }
+
 const getForm = (e: Event) => {
     const target: (HTMLElement & {value: string})[] = Array.from((e.target as HTMLElement).children.namedItem('form').children.item(0).children) as (HTMLElement & {value: string})[]
 
