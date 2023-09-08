@@ -9,8 +9,8 @@
 
             <template v-slot:expanded-content="{ setIsExpanded, isExpanded }">
                 <FlexLayout
-                    class="gap-2 flex-col items-end transition-all"
-                    :class="isExpanded ? ' opacity-100 flex z-[1]' : ' opacity-0'" @click="setIsExpanded(false)"
+                    class="gap-2 flex-col items-end transition-all select-none"
+                    :class="isExpanded ? 'opacity-100 flex z-[1]' : ' opacity-0 pointer-events-none'" @click="setIsExpanded(false)"
                 >
                     <md-fab v-for="(e, index) in componentList" :key="index" @click="setTargetComponent(e)" lowered :label="e.label">
                         <md-icon slot="icon">{{ e.icon }}</md-icon>
