@@ -22,6 +22,8 @@
     "preview:src": "wireit",
     "format:json": "npx prettier --write package.json",
     "format:ts": "tsc --pretty",
+    "publish-to-firebase": "node ./publish-to-firebase.js",
+    "publish-to-github": "node ./publish-to-github.js",
     "test": "exit 0"
   },
   "type": "module",

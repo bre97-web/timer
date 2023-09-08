@@ -21,6 +21,7 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
+      - run: npm run publish-to-firebase
       - run: 'npm run build'
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
