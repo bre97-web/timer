@@ -1,9 +1,9 @@
 {
-  "name": "vue3-component-template",
+  "name": "timer",
   "version": "0.0.1",
   "description": "",
   "author": "bre97-web",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": ""
@@ -64,9 +64,7 @@
     "build:src": {
       "command": "vite build",
       "files": [
-        "src/**/*",
-        "!docs/**/*",
-        "!config/**/*"
+        "src/**/*"
       ],
       "output": [
         "docs/**/*"
