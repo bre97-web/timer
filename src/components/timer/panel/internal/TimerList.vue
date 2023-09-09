@@ -1,6 +1,6 @@
 <template>
     <GridLayout class="gap-4">
-        <FlexLayout v-for="e in timer.getTimerEvents" :key="e.index" class="rounded-3xl p-4 relative min-w-min flex-col gap-2" :class="{'error-container on-error-container-text animate-pulse': e.state.num < 0}">
+        <FlexLayout v-for="e in timer.getTimerEvents" :key="e.index" class="rounded-3xl p-4 relative min-w-min flex-col gap-2" :class="[e.state.num < 0 ? 'error-container on-error-container-text animate-pulse' : e.isPinned ? 'primary-container' : 'surface-variant']">
             <md-ripple></md-ripple>
             <md-elevation></md-elevation>
             

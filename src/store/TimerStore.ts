@@ -12,6 +12,7 @@ export type Event = {
     handle: () => void
     timer: null | any
     index: string
+    isPinned: boolean
 }
 export type EventPackage = {
     start: () => void
@@ -108,7 +109,8 @@ export const useTimerStore = defineStore('timer_store', {
                 label: label,
                 handle: handle,
                 timer: null,
-                index: moment().format('x')
+                index: moment().format('x'),
+                isPinned: false,
             }
         }
     }

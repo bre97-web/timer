@@ -1,6 +1,6 @@
 <template>
     <GridLayout class="gap-4">
-        <div v-for="e in stopwatches.getStopwatchEvents" :key="e.index" class="rounded-3xl p-4 relative min-w-min">
+        <div v-for="e in stopwatches.getStopwatchEvents" :key="e.index" class="rounded-3xl p-4 relative min-w-min" :class="[e.isPinned ? 'primary-container' : 'surface-variant']">
             <md-ripple></md-ripple>
             <md-elevation></md-elevation>
 

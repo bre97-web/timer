@@ -1,7 +1,7 @@
 <template>
-    <div class="primary-container relative max-h-screen min-h-screen flex flex-col h-full">
+    <div class="background relative max-h-screen min-h-screen flex flex-col h-full w-full">
         <Header></Header>
-        <main class="relative container background self-center flex-grow overflow-y-auto rounded-3xl">
+        <main class="relative surface self-center flex-grow overflow-y-auto rounded-3xl w-full">
             <TimerPanel></TimerPanel>
             <CreateButton></CreateButton>
             <EditLabelDialogVue></EditLabelDialogVue>
