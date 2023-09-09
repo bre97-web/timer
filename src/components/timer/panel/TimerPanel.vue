@@ -1,8 +1,8 @@
 <template>
-    <FlexLayout class="flex-col gap-8">
+    <GridLayout class="p-4 gap-8 w-full flex-grow">
         <StopwatchList></StopwatchList>
         <TimerList></TimerList>
-    </FlexLayout>
+    </GridLayout>
 </template>
 
 <script setup lang="ts">
