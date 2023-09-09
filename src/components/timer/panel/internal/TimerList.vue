@@ -24,11 +24,13 @@
                     </FlexLayout>
                 </template>
                 <template v-slot:expanded-content="{ isExpanded }">
-                    <FlexLayout class="gap-1 flex-wrap justify-end" v-show="isExpanded">
+                    <FlexLayout class="gap-1 flex-col md:flex-row flex-wrap items-start md:justify-end" v-show="isExpanded">
                         <md-text-button @click="timer.remove(e, TimerTypes.TIMER)">
                             Remove
                             <md-icon slot="icon">delete</md-icon>
                         </md-text-button>
+
+                        <EditLabelButton :e="e"></EditLabelButton>
                     </FlexLayout>
                 </template>
             </ExpandLayout>
@@ -39,6 +41,7 @@
 <script setup lang="ts">
 import { TimerTypes, useTimerStore } from '@/store/TimerStore';
 import moment from 'moment';
+import EditLabelButton from '@/components/timer/edit-label/EditLabelButton.vue';
 
 const timer = useTimerStore()
 

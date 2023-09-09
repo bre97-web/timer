@@ -22,13 +22,13 @@
                     </FlexLayout>
                 </template>
                 <template v-slot:expanded-content="{ isExpanded }">
-                    <FlexLayout class="gap-1 flex-col items-start" v-show="isExpanded">
+                    <FlexLayout class="gap-1 flex-col md:flex-row flex-wrap items-start md:justify-end" v-show="isExpanded">
                         <md-text-button @click="stopwatches.remove(e, TimerTypes.STOPWATCH)">
                             Remove
                             <md-icon slot="icon">delete</md-icon>
                         </md-text-button>
 
-                        <EditLabelButton :e="e" :label="e.label" :set-label="(newLabel: string) => e.label = newLabel"></EditLabelButton>
+                        <EditLabelButton :e="e"></EditLabelButton>
                     </FlexLayout>
                 </template>
             </ExpandLayout>

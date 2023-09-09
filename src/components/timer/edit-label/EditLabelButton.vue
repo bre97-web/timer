@@ -10,8 +10,6 @@ import { EventPackage } from '@/store/TimerStore'
 import { willEditLabel } from './editLabel';
 
 const props = defineProps<{
-    label: string
-    setLabel: (newLabel: string) => string
     e: EventPackage
 }>()
 
