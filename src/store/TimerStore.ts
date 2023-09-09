@@ -30,8 +30,8 @@ export const useTimerStore = defineStore('timer_store', {
         }
     }),
     getters: {
-        getStopwatchEvents: (state) => state.events.stopwatch,
-        getTimerEvents: (state) => state.events.timer,
+        getStopwatchEvents: (state) => state.events.stopwatch.sort(e => e.isPinned ? -1 : 1),
+        getTimerEvents: (state) => state.events.timer.sort(e => e.isPinned ? -1 : 1),
     },
     actions: {
         remove(e: EventPackage, type: TimerTypes) {
@@ -57,6 +57,7 @@ export const useTimerStore = defineStore('timer_store', {
                 default:
                     break;
             }
+
         },
         createStopwatchEvent(): EventPackage {
             var state = reactive({
@@ -112,7 +113,7 @@ export const useTimerStore = defineStore('timer_store', {
                 index: moment().format('x'),
                 isPinned: false,
             }
-        }
+        },
     },
     persist: true,
 })
