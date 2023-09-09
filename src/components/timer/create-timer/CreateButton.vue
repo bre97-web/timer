@@ -36,39 +36,25 @@
 </template>
 
 <script setup lang="ts" generic="T">
-import { markRaw, onMounted, onUnmounted, ref } from 'vue'
+import { markRaw, ref } from 'vue'
 import { TimerTypes, useTimerStore } from '@/store/TimerStore'
 import * as DialogComponent from '@/scripts/createTimerButtonList'
-import CreateDialog from '@/components/timer/creator-dialog/CreateDialog.vue'
+import CreateDialog from '@/components/timer/create-timer/CreateDialog.vue'
+import { openDialog } from '@/scripts/dialog'
+import { MDTextField } from '@/types/MDComponents'
 
-/**
- * Open the dialog
- */
-const createDialogRef = (): HTMLElement & {show:()=>void, close:()=>void} => document.getElementById('createDialogRef') as HTMLElement & {show:()=>void, close:()=>void}
+const timer = useTimerStore()
 
 const targetComponent = ref(markRaw(DialogComponent.getComponentList()[0]))
 const setTargetComponent = (e: any) => {
     targetComponent.value = markRaw(e)
-    createDialogRef().show()
+    openDialog('createDialogRef', (e) => {
+        if(targetComponent.value.label === 'Stopwatch') {
+            timer.push(timer.createStopwatchEvent(), TimerTypes.STOPWATCH)
+        } else if(targetComponent.value.label === 'Timer') {
+            const target = ((e.target as HTMLElement).children.item(0) as MDTextField).value
+            timer.push(timer.createTimerEvent(parseInt(target)), TimerTypes.TIMER)
+        }   
+    })
 }
-
-const getForm = (e: Event) => {
-    const target: (HTMLElement & {value: string})[] = Array.from((e.target as HTMLElement).children.namedItem('form').children.item(0).children) as (HTMLElement & {value: string})[]
-
-    const timer = useTimerStore()
-
-    if(targetComponent.value.label === 'Stopwatch') {
-        timer.push(timer.createStopwatchEvent(), TimerTypes.STOPWATCH)
-    } else if(targetComponent.value.label === 'Timer') {
-        timer.push(timer.createTimerEvent(parseInt(target[0].value)), TimerTypes.TIMER)
-    }   
-}
-
-onMounted(() => {
-    createDialogRef().addEventListener('close', getForm)
-})
-onUnmounted(() => {
-    createDialogRef().removeEventListener('close', getForm)
-})
-
 </script>
