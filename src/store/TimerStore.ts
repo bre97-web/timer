@@ -59,14 +59,12 @@ export const useTimerStore = defineStore('timer_store', {
             }
 
         },
-        createStopwatchEvent(): EventPackage {
+        createStopwatchEvent(num = 0, label = 'New Stopwatch'): EventPackage {
             var state = reactive({
-                num: 0
+                num: num
             })
 
-            const event = this.createEvent('New Stopwatch', () => setInterval(() => {
-                state.num += 0.01
-            }, 10))
+            const event = this.createEvent(label, this.stopwatchHandle(state))
 
             return {
                 start: () => {
@@ -82,14 +80,12 @@ export const useTimerStore = defineStore('timer_store', {
                 ...event
             }
         },
-        createTimerEvent(countdown: number): EventPackage {
+        createTimerEvent(countdown: number, label = 'New Timer'): EventPackage {
             var state = reactive({
                 num: countdown
             })
 
-            const e = this.createEvent('New Timer', () => setInterval(() => {
-                state.num -= 1
-            }, 1000))
+            const e = this.createEvent(label, this.timerHandle(state))
 
             return {
                 start: () => {
@@ -114,6 +110,20 @@ export const useTimerStore = defineStore('timer_store', {
                 isPinned: false,
             }
         },
+        stopwatchHandle(state: any) {
+            return () => setInterval(() => {
+                state.num += 0.01
+            }, 10)
+        },
+        timerHandle(state: any) {
+            return () => setInterval(() => {
+                state.num -= 1
+            }, 1000)
+        },
+        activiteEvents() {
+            this.events.stopwatch = this.events.stopwatch.map(e => this.createStopwatchEvent(e.state.num, e.label))
+            this.events.timer = this.events.timer.map(e => this.createTimerEvent(e.state.num, e.label))       
+        }
     },
     persist: true,
 })

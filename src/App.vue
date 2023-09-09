@@ -16,8 +16,13 @@ import Header from '@/components/header/Header.vue'
 import { onMounted } from 'vue';
 import { initDarkToHtmlClass } from './store/DarkStore';
 import TimerPanel from './components/timer/panel/TimerPanel.vue';
+import { useTimerStore } from './store/TimerStore';
+
+const timer = useTimerStore()
 
 onMounted(() => {
     initDarkToHtmlClass()
+
+    timer.activiteEvents()
 })
 </script>
