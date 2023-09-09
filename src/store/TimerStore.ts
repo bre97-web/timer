@@ -113,5 +113,6 @@ export const useTimerStore = defineStore('timer_store', {
                 isPinned: false,
             }
         }
-    }
+    },
+    persist: true,
 })
