@@ -44,9 +44,4 @@ import moment from 'moment';
 import EditLabelButton from '@/components/timer/edit-label/EditLabelButton.vue';
 
 const timer = useTimerStore()
-
 </script>
-
-<style scoped>
-
-</style>
