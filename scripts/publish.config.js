@@ -1,16 +1,14 @@
 import fs from 'fs'
-import * as baseURL from './publish-url.js'
 
-export const convert = () => {
+export const convert = (targetPlatform) => {
     console.log('Start building: write vite.config.ts')
     
-    const content = fs.readFileSync('baseUrl.json', {
+    const content = fs.readFileSync('./baseUrl.json', {
         encoding: 'utf-8'
     })
 
     let contentJSON = JSON.parse(content)
-    contentJSON.base = baseURL.firebaseBase
-    console.log(`convert base to: ${contentJSON.base}`);
+    contentJSON.base = targetPlatform
     
     fs.writeFileSync('baseURL.json', JSON.stringify(contentJSON), {
         encoding: 'utf-8',
@@ -18,5 +16,3 @@ export const convert = () => {
     
     console.log('End building: write vite.config.ts')
 }
-
-convert()
