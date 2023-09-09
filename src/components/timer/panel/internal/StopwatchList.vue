@@ -22,16 +22,13 @@
                     </FlexLayout>
                 </template>
                 <template v-slot:expanded-content="{ isExpanded }">
-                    <FlexLayout class="gap-1 flex-wrap justify-end" v-show="isExpanded">
+                    <FlexLayout class="gap-1 flex-col items-start" v-show="isExpanded">
                         <md-text-button @click="stopwatches.remove(e, TimerTypes.STOPWATCH)">
                             Remove
                             <md-icon slot="icon">delete</md-icon>
                         </md-text-button>
 
-                        <md-text-button @click="e.label = '1'">
-                            Edit Label
-                            <md-icon slot="icon">edit</md-icon>
-                        </md-text-button>
+                        <EditLabelButton :e="e" :label="e.label" :set-label="(newLabel: string) => e.label = newLabel"></EditLabelButton>
                     </FlexLayout>
                 </template>
             </ExpandLayout>
@@ -41,6 +38,7 @@
 
 <script setup lang="ts">
 import { TimerTypes, useTimerStore } from '@/store/TimerStore';
+import EditLabelButton from '@/components/timer/edit-label/EditLabelButton.vue';
 
 const stopwatches = useTimerStore()
 
