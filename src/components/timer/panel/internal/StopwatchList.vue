@@ -1,10 +1,11 @@
 <template>
     <GridLayout class="gap-4">
-        <div v-for="e in stopwatches.getStopwatchEvents" :key="e.id" class="rounded-3xl p-4 relative min-w-min">
+        <div v-for="e in stopwatches.getStopwatchEvents" :key="e.index" class="rounded-3xl p-4 relative min-w-min">
             <md-ripple></md-ripple>
             <md-elevation></md-elevation>
 
-            <DisplayLarge class="select-none">{{ (e.value as number).toFixed(2) }}</DisplayLarge>
+            <LabelLarge>{{ e.label }}</LabelLarge>
+            <DisplayLarge class="select-none">{{ (e.state.num as number).toFixed(2) }}</DisplayLarge>
 
             <div class="flex flex-wrap gap-1">
                 <md-filled-tonal-button @click="e.start">Run</md-filled-tonal-button>
@@ -25,6 +26,11 @@
                         <md-text-button @click="stopwatches.remove(e, TimerTypes.STOPWATCH)">
                             Remove
                             <md-icon slot="icon">delete</md-icon>
+                        </md-text-button>
+
+                        <md-text-button @click="e.label = '1'">
+                            Edit Label
+                            <md-icon slot="icon">edit</md-icon>
                         </md-text-button>
                     </FlexLayout>
                 </template>

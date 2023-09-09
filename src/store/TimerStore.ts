@@ -1,26 +1,31 @@
 import moment from "moment";
 import { defineStore } from "pinia";
-import { Ref, ref } from "vue";
+import { reactive } from "vue";
 
 export enum TimerTypes {
     TIMER = 0,
     STOPWATCH
 }
 
-export type TimerEventReturns = {
-    start: () => void,
-    pause: () => void,
-    continue: () => void,
-    value: Ref<number>,
-    id: string
+export type Event = {
+    label: string
+    handle: () => void
+    timer: null | any
+    index: string
 }
+export type EventPackage = {
+    start: () => void
+    pause: () => void
+    continue: () => void
+    state: any
+} & Event
 
 export const useTimerStore = defineStore('timer_store', {
     state: () => ({
         countdown: 3,
         events: {
-            stopwatch: [] as TimerEventReturns[],
-            timer: [] as TimerEventReturns[],
+            stopwatch: [] as EventPackage[],
+            timer: [] as EventPackage[],
         }
     }),
     getters: {
@@ -28,19 +33,19 @@ export const useTimerStore = defineStore('timer_store', {
         getTimerEvents: (state) => state.events.timer,
     },
     actions: {
-        remove(e: any, type: TimerTypes) {
+        remove(e: EventPackage, type: TimerTypes) {
             switch (type) {
                 case TimerTypes.TIMER:
-                    this.events.timer = this.events.timer.filter(e => e !== e)
+                    this.events.timer = this.events.timer.filter(element => element !== e)
                     break;
                 case TimerTypes.STOPWATCH:
-                    this.events.stopwatch = this.events.stopwatch.filter(e => e !== e)
+                    this.events.stopwatch = this.events.stopwatch.filter(element => element !== e)
                     break;
                 default:
                     break;
             }
         },
-        push(e: any, type: TimerTypes) {
+        push(e: EventPackage, type: TimerTypes) {
             switch (type) {
                 case TimerTypes.TIMER:
                     this.events.timer.push(e)
@@ -52,46 +57,58 @@ export const useTimerStore = defineStore('timer_store', {
                     break;
             }
         },
-        createStopwatchEvent(): TimerEventReturns {
-            var num = ref(0)
+        createStopwatchEvent(): EventPackage {
+            var state = reactive({
+                num: 0
+            })
 
-            const event = () => setInterval(() => {
-                num.value += 0.01
-            }, 10)
-            var timer: any = null
+            const event = this.createEvent('New Stopwatch', () => setInterval(() => {
+                state.num += 0.01
+            }, 10))
+
             return {
                 start: () => {
-                    clearInterval(timer)
-                    timer = event()
+                    clearInterval(event.timer)
+                    event.timer = event.handle()
                 },
-                pause: () => clearInterval(timer),
+                pause: () => clearInterval(event.timer),
                 continue: () => {
-                    clearInterval(timer)
-                    timer = event()
+                    clearInterval(event.timer)
+                    event.timer = event.handle()
                 },
-                value: num,
-                id: moment().format('X').toString()
+                state: state,
+                ...event
             }
         },
-        createTimerEvent(countdown: number): TimerEventReturns {
-            var num = ref(countdown)
+        createTimerEvent(countdown: number): EventPackage {
+            var state = reactive({
+                num: countdown
+            })
 
-            const event = () => setInterval(() => {
-                num.value -= 1
-            }, 1000)
-            var timer: any = null
+            const e = this.createEvent('New Timer', () => setInterval(() => {
+                state.num -= 1
+            }, 1000))
+
             return {
                 start: () => {
-                    clearInterval(timer)
-                    timer = event()
+                    clearInterval(e.timer)
+                    e.timer = e.handle()
                 },
-                pause: () => clearInterval(timer),
+                pause: () => clearInterval(e.timer),
                 continue: () => {
-                    clearInterval(timer)
-                    timer = event()
+                    clearInterval(e.timer)
+                    e.timer = e.handle()
                 },
-                value: num,
-                id: moment().format('X').toString()
+                state: state,
+                ...e
+            }
+        },
+        createEvent(label: string, handle: () => void): Event {
+            return {
+                label: label,
+                handle: handle,
+                timer: null,
+                index: moment().format('x')
             }
         }
     }
