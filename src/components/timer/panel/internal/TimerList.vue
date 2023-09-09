@@ -31,6 +31,8 @@
                         </md-text-button>
 
                         <EditLabelButton :e="e"></EditLabelButton>
+
+                        <IsPinnedSwitch :e="e"></IsPinnedSwitch>
                     </FlexLayout>
                 </template>
             </ExpandLayout>
@@ -42,6 +44,7 @@
 import { TimerTypes, useTimerStore } from '@/store/TimerStore';
 import moment from 'moment';
 import EditLabelButton from '@/components/timer/edit-label/EditLabelButton.vue';
+import IsPinnedSwitch from '@/components/timer/switch-pinned/IsPinnedSwitch.vue';
 
 const timer = useTimerStore()
 </script>
