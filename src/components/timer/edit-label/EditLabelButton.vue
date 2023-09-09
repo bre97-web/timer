@@ -16,8 +16,4 @@ const props = defineProps<{
 const openDialog = () => {
     willEditLabel(props.e)
 }
-
-
 </script>
-
-<style scoped></style>
