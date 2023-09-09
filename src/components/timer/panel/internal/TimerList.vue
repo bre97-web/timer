@@ -1,6 +1,6 @@
 <template>
     <GridLayout class="gap-4">
-        <FlexLayout v-for="e in timer.getTimerEvents" :key="e.index" class="rounded-3xl p-4 relative min-w-min flex-col gap-2" :class="{'error-container on-error-container-text animate-pulse': e.state.num < 0}">
+        <div v-for="e in timer.getTimerEvents" :key="e.index" class="rounded-3xl p-4 space-y-2 relative min-w-min flex-col gap-2" :class="[e.state.num < 0 ? 'error-container on-error-container-text animate-pulse' : e.isPinned ? 'primary-container' : 'surface-variant']">
             <md-ripple></md-ripple>
             <md-elevation></md-elevation>
             
@@ -9,11 +9,11 @@
                 {{ e.state.num < 0 ? '-' : '' }}{{ moment({h:moment.duration(Math.abs(e.state.num), 'seconds').hours(), m: moment.duration(Math.abs(e.state.num), 'seconds').minutes(), s: moment.duration(Math.abs(e.state.num), 'seconds').seconds()}).format('HH:mm:ss') }}
             </DisplayLarge>
 
-            <div class="flex flex-wrap gap-1">
+            <FlexLayout class="flex-wrap gap-1">
                 <md-filled-tonal-button @click="e.start">Run</md-filled-tonal-button>
                 <md-filled-tonal-button @click="e.pause">Pause</md-filled-tonal-button>
                 <md-filled-tonal-button @click="e.continue">Continue</md-filled-tonal-button>
-            </div>
+            </FlexLayout>
 
             <ExpandLayout class="space-y-2">
                 <template v-slot:action="{ isExpanded, setIsExpanded }">
@@ -31,10 +31,12 @@
                         </md-text-button>
 
                         <EditLabelButton :e="e"></EditLabelButton>
+
+                        <IsPinnedSwitch :e="e"></IsPinnedSwitch>
                     </FlexLayout>
                 </template>
             </ExpandLayout>
-        </FlexLayout>
+        </div>
     </GridLayout>
 </template>
 
@@ -42,6 +44,7 @@
 import { TimerTypes, useTimerStore } from '@/store/TimerStore';
 import moment from 'moment';
 import EditLabelButton from '@/components/timer/edit-label/EditLabelButton.vue';
+import IsPinnedSwitch from '@/components/timer/switch-pinned/IsPinnedSwitch.vue';
 
 const timer = useTimerStore()
 </script>

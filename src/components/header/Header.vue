@@ -1,5 +1,5 @@
 <template>
-    <StickyLayout class="border-b px-4 py-2">
+    <StickyLayout class="px-4 py-2">
         <FlexLayout class="justify-between">
             <section>
                 <TitleMedium>Timer</TitleMedium>

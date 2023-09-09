@@ -1,5 +1,5 @@
 <template>
-    <GridLayout class="p-4 gap-8 w-full flex-grow">
+    <GridLayout class="p-4 gap-8 w-full">
         <StopwatchList></StopwatchList>
         <TimerList></TimerList>
     </GridLayout>
