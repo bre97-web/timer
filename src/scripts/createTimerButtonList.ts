@@ -1,5 +1,5 @@
-import CreateStopwatchForm from '@/components/timer/creator-dialog/internal/CreateStopwatchForm.vue'
-import CreateTimerForm from '@/components/timer/creator-dialog/internal/CreateTimerForm.vue'
+import CreateStopwatchForm from '@/components/timer/create-timer/internal/CreateStopwatchForm.vue'
+import CreateTimerForm from '@/components/timer/create-timer/internal/CreateTimerForm.vue'
 
 const componentList: {
     component: any,

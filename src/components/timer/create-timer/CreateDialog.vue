@@ -2,9 +2,6 @@
     <md-dialog id="createDialogRef">
         <span slot="headline">
             <span style="flex: 1;">Create a timer</span>
-            <md-icon-button form="form">
-                <md-icon>close</md-icon>
-            </md-icon-button>
         </span>
         <form id="form" slot="content" method="dialog">
             <component :is="props.targetComponent.component"></component>

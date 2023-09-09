@@ -3,14 +3,14 @@
         <Header></Header>
         <main class="relative container background self-center flex-grow overflow-y-auto rounded-3xl">
             <TimerPanel></TimerPanel>
-            <CreateTimerButton></CreateTimerButton>
+            <CreateButton></CreateButton>
             <EditLabelDialogVue></EditLabelDialogVue>
         </main>
     </div>
 </template>
 
 <script setup lang="ts">
-import CreateTimerButton from '@/components/fixed-button/CreateTimerButton.vue'
+import CreateButton from '@/components/timer/create-timer/CreateButton.vue'
 import EditLabelDialogVue from '@/components/timer/edit-label/EditLabelDialog.vue'
 import Header from '@/components/header/Header.vue'
 import { onMounted } from 'vue';
