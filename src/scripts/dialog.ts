@@ -9,7 +9,7 @@ const successStatus = ['ok', 'success', 'submit', 'yes']
 const cancelStatus = ['no', 'cancel', 'faild']
 
 /**
- * 
+ * It run once
  * @param id the element unique id of the dialog
  * @param handle run callback while dialog is submitted
  */
@@ -23,6 +23,8 @@ export const openDialog = (id: string, callbackSuccess: (e: SubmitEvent) => void
         if(cancelStatus.includes((e.submitter as MDButton).value)) {
             callbackCancel(e)
         }
+    }, {
+        once: true
     })
 
     dialog.show()
