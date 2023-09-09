@@ -3,7 +3,7 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import baseUrl from './baseURL.json'
+import baseUrl from './baseUrl.json'
 
 export default defineConfig({
   resolve: {

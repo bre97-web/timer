@@ -2,9 +2,7 @@
 node_modules
 !docs/**/*
 !scripts/**/*
-
-# css
-!*.css
+!src/**/*
 
 # the other folders & files
 .wireit/**/*

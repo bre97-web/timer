@@ -7,7 +7,7 @@ export enum TimerTypes {
     STOPWATCH
 }
 
-export type TimerReturns = {
+export type TimerEventReturns = {
     start: () => void,
     pause: () => void,
     continue: () => void,
@@ -19,8 +19,8 @@ export const useTimerStore = defineStore('timer_store', {
     state: () => ({
         countdown: 3,
         events: {
-            stopwatch: [] as TimerReturns[],
-            timer: [] as TimerReturns[],
+            stopwatch: [] as TimerEventReturns[],
+            timer: [] as TimerEventReturns[],
         }
     }),
     getters: {
@@ -52,7 +52,7 @@ export const useTimerStore = defineStore('timer_store', {
                     break;
             }
         },
-        createStopwatchEvent(): TimerReturns {
+        createStopwatchEvent(): TimerEventReturns {
             var num = ref(0)
 
             const event = () => setInterval(() => {
@@ -73,7 +73,7 @@ export const useTimerStore = defineStore('timer_store', {
                 id: moment().format('X').toString()
             }
         },
-        createTimerEvent(countdown: number): TimerReturns {
+        createTimerEvent(countdown: number): TimerEventReturns {
             var num = ref(countdown)
 
             const event = () => setInterval(() => {

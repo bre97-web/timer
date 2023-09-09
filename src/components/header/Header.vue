@@ -12,7 +12,3 @@
 <script setup lang="ts">
 import DarkButton from '@/components/dark/DarkButton.vue'
 </script>
-
-<style scoped>
-
-</style>

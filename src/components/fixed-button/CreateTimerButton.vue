@@ -60,8 +60,6 @@ const getForm = (e: Event) => {
     if(targetComponent.value.label === 'Stopwatch') {
         timer.push(timer.createStopwatchEvent(), TimerTypes.STOPWATCH)
     } else if(targetComponent.value.label === 'Timer') {
-        console.log(target[0].value);
-        
         timer.push(timer.createTimerEvent(parseInt(target[0].value)), TimerTypes.TIMER)
     }
     

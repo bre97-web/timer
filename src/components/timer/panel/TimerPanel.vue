@@ -8,9 +8,4 @@
 <script setup lang="ts">
 import StopwatchList from '@/components/timer/panel/internal/StopwatchList.vue';
 import TimerList from '@/components/timer/panel/internal/TimerList.vue';
-
 </script>
-
-<style scoped>
-
-</style>
