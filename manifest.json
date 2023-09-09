@@ -52,7 +52,7 @@
     "src": "../node_modules/material-symbols/material-symbols-outlined.woff2"
   },
   "index.css": {
-    "file": "assets/index-7adf2bc4.css",
+    "file": "assets/index-ad28f12d.css",
     "src": "index.css"
   },
   "index.html": {
@@ -72,9 +72,9 @@
       "assets/roboto-latin-400-normal-a9fdbefa.woff"
     ],
     "css": [
-      "assets/index-7adf2bc4.css"
+      "assets/index-ad28f12d.css"
     ],
-    "file": "assets/index-b644d942.js",
+    "file": "assets/index-861d5521.js",
     "isEntry": true,
     "src": "index.html"
   }
