@@ -1,17 +1,17 @@
 <template>
     <GridLayout class="gap-4">
-        <div v-for="e in stopwatches.getStopwatchEvents" :key="e.index" class="rounded-3xl p-4 relative min-w-min" :class="[e.isPinned ? 'primary-container' : 'surface-variant']">
+        <div v-for="e in stopwatches.getStopwatchEvents" :key="e.index" class="rounded-3xl p-4 space-y-2 relative min-w-min max-h-min" :class="[e.isPinned ? 'primary-container' : 'surface-variant']">
             <md-ripple></md-ripple>
             <md-elevation></md-elevation>
 
             <LabelLarge>{{ e.label }}</LabelLarge>
             <DisplayLarge class="select-none">{{ (e.state.num as number).toFixed(2) }}</DisplayLarge>
 
-            <div class="flex flex-wrap gap-1">
+            <FlexLayout class="flex-wrap gap-1">
                 <md-filled-tonal-button @click="e.start">Run</md-filled-tonal-button>
                 <md-filled-tonal-button @click="e.pause">Pause</md-filled-tonal-button>
                 <md-filled-tonal-button @click="e.continue">Continue</md-filled-tonal-button>
-            </div>
+            </FlexLayout>
 
             <ExpandLayout class="space-y-2">
                 <template v-slot:action="{ isExpanded, setIsExpanded }">
@@ -34,6 +34,7 @@
                     </FlexLayout>
                 </template>
             </ExpandLayout>
+
         </div>
     </GridLayout>
 </template>
