@@ -1,7 +1,7 @@
 <template>
-    <div class="background relative max-h-screen min-h-screen flex flex-col h-full">
+    <div class="primary-container relative max-h-screen min-h-screen flex flex-col h-full">
         <Header></Header>
-        <main class="relative container surface self-center p-8 md:p-4 flex-grow overflow-y-auto rounded-3xl">
+        <main class="relative container background self-center flex-grow overflow-y-auto rounded-3xl">
             <TimerPanel></TimerPanel>
             <CreateTimerButton></CreateTimerButton>
         </main>
