@@ -1,7 +1,10 @@
 <template>
     <StickyLayout class="border-b px-4 py-2">
         <FlexLayout class="justify-between">
-            <TitleMedium>Timer</TitleMedium>
+            <section>
+                <TitleMedium>Timer</TitleMedium>
+                <BodySmall>A material timer web application</BodySmall>
+            </section>
             <div>
                 <DarkButton></DarkButton>
             </div>
