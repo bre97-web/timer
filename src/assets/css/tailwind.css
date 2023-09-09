@@ -5,9 +5,8 @@
 
 @layer base {
 
-    
-
 }
+
 @layer components {
     .elevation {
         --md-elevation-level: 3;
@@ -19,7 +18,14 @@
         font-variation-settings: 'FILL' 1;
         animation: icon-fill 0.15s ease-in;
     }
+
+    .disabled-force {
+        pointer-events: none;
+        filter: grayscale(1);
+        user-select: none;
+    }
 }
+
 @layer utilities {
     @keyframes icon-fill {
         from {

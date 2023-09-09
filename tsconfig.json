@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "allowUnreachableCode": false,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "declaration": true,
     "declarationMap": false,
@@ -27,5 +28,5 @@
     "allowJs": true,
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "exclude": ["catalog", "**/demo", "scripts"]
+  "exclude": ["scripts"]
 }

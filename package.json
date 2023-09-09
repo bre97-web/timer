@@ -6,12 +6,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/bre97-web/timer.git"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/bre97-web/timer/issues"
   },
-  "homepage": "",
+  "homepage": "https://bre97-web.github.io/timer/",
   "scripts": {
     "type-check": "wireit",
     "dev": "wireit",
@@ -22,6 +22,8 @@
     "preview:src": "wireit",
     "format:json": "npx prettier --write package.json",
     "format:ts": "tsc --pretty",
+    "publish-to-firebase": "node ./scripts/publish-to-firebase.js",
+    "publish-to-github": "node ./scripts/publish-to-github.js",
     "test": "exit 0"
   },
   "type": "module",
