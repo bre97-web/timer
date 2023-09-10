@@ -1,29 +1,52 @@
 <template>
-        <FlexLayout class="rounded-3xl border flex-col p-4 gap-4">
-            <CurrentDate :current-date="current"></CurrentDate>
+    <FlexLayout class="rounded-3xl border flex-col lg:m-4 p-4 gap-4 w-full lg:max-w-lg relative">
+        <CurrentDate :current-date="current"></CurrentDate>
 
-            <FlexLayout class="self-center gap-1 flex-wrap items-center justify-center">
-                <OpeateBoard @add="add"></OpeateBoard>
-                <SaveHistoryButton @push-history="pushHistory" :e="current"></SaveHistoryButton>
-            </FlexLayout>
-
-            <div>
-                <CalculatorUnitSelect
-                    @set-current-time-option="(e: string) => currentTimeOption = e"
-                    :available-time-options="availableTimeOptions"
-                    :current-time-option="currentTimeOption"
-                ></CalculatorUnitSelect>
-            </div>
-                
-            <ResetButtons @reset="reset"
-                @reset-date="resetDate"
-                @reset-time="resetTime"
-                @sync-to-today="syncToToday"
-            ></ResetButtons>
-
-            <History :history="history" @remove="removeHistory"></History>
-
+        <FlexLayout class="self-center gap-1 flex-wrap items-center justify-center">
+            <OpeateBoard @add="add"></OpeateBoard>
+            <SaveHistoryButton
+                @push-history="pushHistory"
+                :e="current"
+            ></SaveHistoryButton>
         </FlexLayout>
+
+        <div>
+            <CalculatorUnitSelect
+                @set-current-time-option="(e: string) => currentTimeOption = e"
+                :available-time-options="availableTimeOptions"
+                :current-time-option="currentTimeOption"
+            ></CalculatorUnitSelect>
+        </div>
+        
+        <ExpandLayout class="space-y-2">
+            <template v-slot:action="{ isExpanded, setIsExpanded }">
+                <FlexLayout class="justify-end">
+                    <md-icon-button @click="setIsExpanded(!isExpanded)">
+                        <md-icon>
+                            {{ isExpanded ?  'expand_less' : 'expand_more'}}
+                        </md-icon>
+                    </md-icon-button>
+                </FlexLayout>
+            </template>
+            <template v-slot:expanded-content="{ isExpanded }">
+                <div
+                    v-show="isExpanded"
+                    class="secondary-container rounded-3xl p-1"
+                >
+                    <ResetButtons
+                        @reset="reset"
+                        @reset-date="resetDate"
+                        @reset-time="resetTime"
+                        @sync-to-today="syncToToday"
+                    ></ResetButtons>
+                </div>
+
+            </template>
+        </ExpandLayout>
+
+        <History :history="history" @remove="removeHistory"></History>
+
+    </FlexLayout>
 </template>
 
 <script setup lang="ts">
@@ -33,8 +56,8 @@ import SaveHistoryButton from '@/components/calculator/SaveHistoryButton.vue';
 import OpeateBoard from '@/components/calculator/OpeateBoard.vue';
 import moment from 'moment'
 import { computed, ref } from 'vue'
-import CalculatorUnitSelect from './CalculatorUnitSelect.vue';
-import ResetButtons from './ResetButtons.vue';
+import CalculatorUnitSelect from '@/components/calculator/CalculatorUnitSelect.vue';
+import ResetButtons from '@/components/calculator/ResetButtons.vue';
 
 
 const availableTimeOptions = [

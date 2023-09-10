@@ -1,5 +1,5 @@
 <template>
-    <FlexLayout class="flex-col items-start justify-start gap-1">
+    <FlexLayout class="flex-col md:flex-row flex-wrap items-start justify-start md:justify-between gap-1">
         <md-text-button @click="emits('reset')">
             Reset
             <md-icon slot="icon">restart_alt</md-icon>
