@@ -3,12 +3,16 @@
         <Header></Header>
         <main class="relative surface self-center flex-grow  overflow-y-auto rounded-3xl w-full">
             <router-view></router-view>
-            <CreateButton></CreateButton>
-            <EditLabelDialogVue></EditLabelDialogVue>
         </main>
-        <nav class="right-0 bottom-0 w-full overflow-clip h-fit flex-none bg-blue-400">
-            <BottomNavigation></BottomNavigation>
+        <nav class="relative flex-none h-fit">
+            <div class="absolute right-6 -top-16">
+                <CreateButton></CreateButton>
+            </div>
+            <div class="overflow-clip">
+                <BottomNavigation></BottomNavigation>
+            </div>
         </nav>
+        <EditLabelDialogVue></EditLabelDialogVue>
     </div>
 </template>
 
