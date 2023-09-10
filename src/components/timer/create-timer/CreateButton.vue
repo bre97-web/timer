@@ -2,6 +2,7 @@
     <ExpandLayout class="relative flex flex-col-reverse items-end">
         <template v-slot:action="{ setIsExpanded }">
             <md-fab
+                variant="primary"
                 @click="setIsExpanded(true)"
                 label="Starts"
             >

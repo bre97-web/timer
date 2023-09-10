@@ -1,11 +1,11 @@
 <template>
     <div class="p-4">
-        <FlexLayout class="rounded-3xl surface-variant flex-col lg:m-4 p-4 gap-4 w-full lg:max-w-lg relative">
+        <FlexLayout class="rounded-3xl surface-variant p-4 flex-col gap-4 w-full lg:max-w-lg relative">
             <md-ripple></md-ripple>
 
             <CurrentDate :current-date="current"></CurrentDate>
 
-            <FlexLayout class="self-center gap-1 flex-wrap items-center justify-center">
+            <FlexLayout class="self-start gap-1 flex-wrap items-center justify-center">
                 <OpeateBoard @add="add"></OpeateBoard>
                 <SaveHistoryButton
                     @push-history="pushHistory"
@@ -34,7 +34,7 @@
                 <template v-slot:expanded-content="{ isExpanded }">
                     <div
                         v-show="isExpanded"
-                        class="secondary-container rounded-3xl p-1"
+                        class="surface rounded-3xl p-1"
                     >
                         <ResetButtons
                             @reset="reset"
