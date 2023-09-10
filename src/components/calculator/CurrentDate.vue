@@ -1,6 +1,6 @@
 <template>
     <p class="text-center">
-        <HeadlineLarge>{{ props.currentDate }}</HeadlineLarge>
+        <DisplayLarge>{{ props.currentDate }}</DisplayLarge>
     </p>
 </template>
 
