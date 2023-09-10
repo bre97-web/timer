@@ -1,7 +1,7 @@
 <template>
-    <div class="background relative max-h-screen flex flex-col h-full w-full">
+    <div class="background relative max-h-screen flex flex-col min-h-screen h-full w-full">
         <Header></Header>
-        <main class="relative surface self-center flex-grow overflow-y-auto rounded-3xl w-full">
+        <main class="relative surface self-center flex-grow  overflow-y-auto rounded-3xl w-full">
             <router-view></router-view>
             <CreateButton></CreateButton>
             <EditLabelDialogVue></EditLabelDialogVue>
