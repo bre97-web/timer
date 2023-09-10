@@ -29,4 +29,11 @@
  --md-sys-color-surface-tint: var(--md-sys-color-surface-tint-light);
  --md-sys-color-outline-variant: var(--md-sys-color-outline-variant-light);
  --md-sys-color-scrim: var(--md-sys-color-scrim-light);
+ --md-sys-color-surface-dim: #d7dbd3;
+ --md-sys-color-surface-bright: #f7fbf2;
+ --md-sys-color-surface-container-lowest: #ffffff;
+ --md-sys-color-surface-container-low: #f1f5ec;
+ --md-sys-color-surface-container: #ebefe7;
+ --md-sys-color-surface-container-high: #e5e9e1;
+ --md-sys-color-surface-container-highest: #e0e4dc;
 }
