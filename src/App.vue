@@ -1,7 +1,7 @@
 <template>
-    <div class="background relative max-h-screen flex flex-col min-h-screen h-full w-full">
+    <div class="bg-[var(--md-sys-color-surface-container-low)] relative max-h-screen flex flex-col gap-4 min-h-screen h-full w-full">
         <Header></Header>
-        <main class="relative surface self-center flex-grow overflow-y-auto rounded-3xl container">
+        <main class="relative bg-[var(--md-sys-color-surface-container-lowest)] self-center flex-grow overflow-y-auto rounded-3xl container">
             <router-view></router-view>
         </main>
         <nav class="relative flex-none h-fit">

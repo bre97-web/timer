@@ -9,10 +9,10 @@
                 {{ e.state.num < 0 ? '-' : '' }}{{ moment({h:moment.duration(Math.abs(e.state.num), 'seconds').hours(), m: moment.duration(Math.abs(e.state.num), 'seconds').minutes(), s: moment.duration(Math.abs(e.state.num), 'seconds').seconds()}).format('HH:mm:ss') }}
             </DisplayLarge>
 
-            <FlexLayout class="flex-wrap gap-1">
-                <md-filled-tonal-button @click="e.start">Run</md-filled-tonal-button>
-                <md-filled-tonal-button @click="e.pause">Pause</md-filled-tonal-button>
-                <md-filled-tonal-button @click="e.continue">Continue</md-filled-tonal-button>
+            <FlexLayout class="flex-wrap gap-1 rounded-3xl surface relative p-1 max-w-max">
+                <md-filled-button @click="e.start">Run</md-filled-button>
+                <md-text-button @click="e.pause">Pause</md-text-button>
+                <md-text-button @click="e.continue">Continue</md-text-button>
             </FlexLayout>
 
             <ExpandLayout class="space-y-2">
@@ -24,7 +24,7 @@
                     </FlexLayout>
                 </template>
                 <template v-slot:expanded-content="{ isExpanded }">
-                    <FlexLayout class="gap-1 flex-col md:flex-row flex-wrap items-start md:justify-end" v-show="isExpanded">
+                    <FlexLayout class="gap-1 flex-col surface p-1 rounded-3xl md:flex-row flex-wrap items-start md:justify-end" v-show="isExpanded">
                         <md-text-button @click="timer.remove(e, TimerTypes.TIMER)">
                             Remove
                             <md-icon slot="icon">delete</md-icon>

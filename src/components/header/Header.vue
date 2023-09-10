@@ -2,8 +2,8 @@
     <StickyLayout class="px-4 py-2">
         <FlexLayout class="justify-between">
             <section>
-                <TitleMedium>Timer</TitleMedium>
-                <BodySmall>A material timer web application</BodySmall>
+                <TitleMedium class="on-surface-text">Timer</TitleMedium>
+                <BodySmall class="on-surface-text">A material timer web application</BodySmall>
             </section>
             <div>
                 <DarkButton></DarkButton>
