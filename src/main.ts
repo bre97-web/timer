@@ -20,6 +20,9 @@ import '@material/web/all'
 import 'material-symbols/outlined.css'
 import '@fontsource/roboto'
 
+import '@material/web/labs/navigationbar/navigation-bar'
+import '@material/web/labs/navigationtab/navigation-tab'
+
 /**
  * Global Components.
  * It's some Unit Text.
